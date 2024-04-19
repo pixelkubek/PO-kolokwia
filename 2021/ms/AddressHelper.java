@@ -1,4 +1,4 @@
-public class AddressHelper {
+class AddressHelper {
     public static int CalculateDistance(int addressA, int addressB){
         return Math.abs(addressA-addressB);
     }
