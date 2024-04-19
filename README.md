@@ -10,7 +10,7 @@ Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzen
 
 # Rozwiązania
 - Kolokwium 2021 Szczepienia
-  - [placeholder](/LICENSE)
+  - [rozwiązanie Marcin Sz.](/2021/ms/)
 - Kolokwium 2020 Mutujący wirus i szczepionka
   - [placeholder](/LICENSE)
 - Kolokwium 2019 Gra błyskawica
