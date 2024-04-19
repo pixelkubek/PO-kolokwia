@@ -12,7 +12,7 @@ Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzen
 - Kolokwium 2021 Szczepienia
   - [rozwiązanie Marcin Sz.](/2021/ms/)
 - Kolokwium 2020 Mutujący wirus i szczepionka
-  - [placeholder](/LICENSE)
+  - [rozwiązanie Marcin Sz.](/2020/ms/)
 - Kolokwium 2019 Gra błyskawica
   - [placeholder](/LICENSE)
 - Kolokwium 2018 Metryki odległości funkcji
