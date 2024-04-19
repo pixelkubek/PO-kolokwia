@@ -6,3 +6,5 @@
 - `Vaccine` - szczepionka.
 - `Patient` - pacjent.
 - `SimpleVaccinationRegistry` - prosta implementacja rejestu szczepień.
+
+[Treść zadania](https://moodle.mimuw.edu.pl/pluginfile.php/299844/mod_resource/content/3/Kolokwium-2021.pdf)
