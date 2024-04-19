@@ -1,0 +1,140 @@
+import java.util.ArrayList;
+
+public class Punkt {
+    private int x, y;
+
+    public Punkt(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {return x;}
+    public int getY() {return y;}
+
+    public boolean rowny(Punkt punkt) {
+        return this.x == punkt.x && this.y == punkt.y;
+    }
+
+    // Ściśle między lub równy.
+    public boolean pomiedzy(Punkt punkt1, Punkt punkt2) {
+        return this.x >= Math.min(punkt1.x, punkt2.x) &&
+                this.x <= Math.max(punkt1.x, punkt2.x) &&
+                this.y >= Math.min(punkt1.y, punkt2.y) &&
+                this.y <= Math.max(punkt1.y, punkt2.y);
+    }
+}
+
+public class Prostokat {
+    private Punkt lewyDolny, prawyGorny;
+
+    public Prostokat(Punkt lewyDolny, Punkt prawyGorny) {
+        this.lewyDolny = lewyDolny;
+        this.prawyGorny = prawyGorny;
+    }
+
+    public Prostokat(int x1, int y1, int x2, int y2) {
+        Prostokat(new Punkt(x1, y1), new Punkt(x2, y2));
+    }
+
+    private boolean pusty() {
+        return lewyDolny.getX() > prawyGorny.getX() ||
+                lewyDolny.getY() > prawyGorny.getY();
+    }
+
+    public boolean porownaj(Prostokat prostokat) {
+        // Równoważne wtw mają taki sam zbiór punktów.
+        if(this.pusty() && prostokat.pusty()) {
+            return true;
+        } else {
+            return this.lewyDolny.rowny(prostokat.lewyDolny) &&
+                    this.prawyGorny.rowny(prostokat.prawyGorny);
+        }
+    }
+
+    public boolean zawiera(Punkt punkt) {
+        return !pusty() && punkt.pomiedzy(lewyDolny, prawyGorny);
+    }
+
+    public boolean wewnatrz(Prostokat prostokat) {
+        if(this.pusty()) {
+            return true;
+        } else if(!this.pusty() && !prostokat.pusty()) {
+            return this.lewyDolny.pomiedzy(prostokat.lewyDolny, prostokat.prawyGorny) &&
+                    this.prawyGorny.pomiedzy(prostokat.lewyDolny, prostokat.prawyGorny);
+        } else {
+            return false;
+        }
+    }
+}
+
+public class Zbior {
+    private ArrayList<Prostokat> zawieraneProstokaty;
+
+    public Zbior() {
+        zawieraneProstokaty = new ArrayList<Prostokat>();
+    }
+
+    public int rozmiar() {
+        return zawieraneProstokaty.size();
+    }
+
+    public boolean dodaj(Prostokat p) {
+        for(Prostokat istniejacy : zawieraneProstokaty) {
+            if(istniejacy.porownaj(p)) {
+                return false;
+            }
+        }
+
+        zawieraneProstokaty.add(p);
+        return true;
+    }
+
+    public boolean dodaj(int x1, int y1, int x2, int y2) {
+        return dodaj(new Prostokat(x1, y1, x2, y2));
+    }
+
+    /*
+        W następnych kilku metodach jest pewien błąd związany
+        z dodawaniem prostokątów do innych zbiorów, w c++ to powinny
+        być const referencje, tutaj są zwykłe referencje.
+    */
+    public int dodaj(Zbior z) {
+        int dodane = 0;
+        for(Prostokat prostokat : z.zawieraneProstokaty) {
+            if(this.dodaj(prostokat)) {
+                dodane++;
+            }
+        }
+
+        return dodane;
+    }
+
+    public Zbior punkt(int x, int y) {
+        Zbior wynik = new Zbior();
+        Punkt zawieranyPunkt = new Punkt(x, y);
+
+        for(Prostokat prostokat : zawieraneProstokaty) {
+            if(prostokat.zawiera(zawieranyPunkt)) {
+                wynik.dodaj(prostokat);
+            }
+        }
+
+        return wynik;
+    }
+
+    public Zbior wewnatrz(Prostokat p) {
+        Zbior wynik = new Zbior();
+
+        for(Prostokat prostokat : zawieraneProstokaty) {
+            if(prostokat.wewnatrz(p)) {
+                wynik.dodaj(prostokat);
+            }
+        }
+
+        return wynik;
+    }
+
+    public void wyczysc() {
+        zawieraneProstokaty.clear();
+    }
+}
