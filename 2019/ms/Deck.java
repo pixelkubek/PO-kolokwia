@@ -20,6 +20,7 @@ class Deck {
         Card[] deck = getFullDeck();
         for(int i = 1; i<= _shufflesCount; i++){
             deck = shuffleDeck(deck);
+            deck = randomSplitDeck(deck);
         }
         return deck;
     }
