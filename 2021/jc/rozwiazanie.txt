@@ -1,0 +1,136 @@
+public class Szczepionka {
+    private String nazwa, producent;
+    private int wielkoscMl;
+
+    public Szczepionka(String nazwa, String producent, int wielkoscMl) {
+        this.nazwa = nazwa;
+        this.producent = producent;
+        this.wielkoscMl = wielkoscMl;
+    }
+
+    public boolean rowne(Szczepionka szczepionka) {
+        return this.nazwa == szczepionka.nawa && this.producent == szczepionka.producent && this.wielkoscMl == szczepionka.wielkoscMl;
+    }
+
+    public String getNazwa() {return nazwa;}
+    public String getProducent() {return producent;}
+    public int getWielkoscMl() {return wielkoscMl;}
+}
+
+public class Pacjent {
+    private int kodPocztowy, maksymalnaOdleglosc;
+    private Szczepionka potrzebnaSzczepionka;
+    private boolean zaszczepiony;
+
+    public Pacjent(int kodPocztowy, int maksymalnaOdleglosc, Szczepionka potrzebnaSzczepionka) {
+        this.kodPocztowy = kodPocztowy;
+        this.maksymalnaOdleglosc = maksymalnaOdleglosc;
+        this.potrzebnaSzczepionka = potrzebnaSzczepionka;
+        this.zaszczepiony = false;
+    }
+
+    public Szczepionka getSzczepionka() {return potrzebnaSzczepionka;}
+    public int getKodPocztowy() {return kodPocztowy;}
+    public int getOdleglosc() {return maksymalnaOdleglosc;}
+    public boolean getZaszczepienie() {return zaszczepiony;}
+
+    public int getWojewodztwo() {
+        return (kodPocztowy - (kodPocztowy % 10000)) / 10000;
+    }
+
+    public void zaszczep() {
+        zaszczepiony = true;
+    }
+}
+
+public class PunktSzczepien {
+    private Szczepionka podawanaSzczepionka;
+    private int pacjenciDziennie, najblizszyWolnyTermin, pacjenciWTymTerminie;
+    // pacjenciWTymTerminie < pacjenciDziennie
+
+    private ArrayList<Pacjent>[] pacjenciWDniu;
+
+    public PunktSzczepien(Szczepionka szczepionka, int ilePacjentowDziennie) {
+        pacjenciDziennie = ilePacjentowDziennie;
+        pacjenciWDniu = new ArrayList<Pacjent>[365];
+        podawanaSzczepionka = szczepionka;
+        najblizszyWolnyTermin = 0;
+        pacjenciWTymTerminie = 0;
+    }
+
+    public Szczepionka getSzczepionka() {return podawanaSzczepionka;}
+    public int getNajblizszyWolnyTermin() {return najblizszyWolnyTermin;}
+
+    static private boolean odbywajaSieSzczepienia(int dzien)
+
+    public void umow(Pacjent pacjent) {
+        pacjenciWDniu[najblizszyWolnyTermin].add(pacjent);
+        pacjenciWTymTerminie++;
+
+        if(pacjenciWTymTerminie >= pacjenciDziennie) {
+            pacjenciWTymTerminie = 0;
+            najblizszyWolnyTermin++;
+
+            while(!odbywajaSieSzczepienia(najblizszyWolnyTermin)) {
+                najblizszyWolnyTermin++;
+            }
+        }
+    }
+
+    public boolean poprawnaSzczepionka(Pacjent pacjent) {
+        return podawanaSzczepionka.rowne(pacjent.getSzczepionka());
+    }
+
+    public ArrayList<Pacjent> raportujPacjentowZDnia(int dzien) {
+        return pacjenciWDniu[dzien];
+    }
+
+    public void realizujSzczepieniaWDniu(int dzien) {
+        for(Pacjent pacjent : pacjenciWDniu[dzien]) {
+            pacjent.zaszczep();
+        }
+    }
+}
+
+public class Wojewodztwo {
+    private int cyfra;
+    private PunktSzczepien[][] punktySzczepien; // punktySzczepien[adres][nr. punktu]
+
+    public Wojewodztwo(int numer, PunktSzczepien[][] punktySzczepien) {
+        this.cyfra = numer;
+        this.punktySzczepien = punktySzczepien;
+    }
+
+    public PunktSzczepien wskazPunkt(Pacjent pacjent) {
+        int najblizszyTermin = 366;
+        PunktSzczepien punktZTerminem;
+
+        int adresPacjentaWWojewodztwie = pacjent.getKodPocztowy() - pacjent.getWojewodztwo() * 10000;
+
+        for(int odleglosc = 0; odleglosc <= pacjent.getOdleglosc(); odleglosc++) {
+            for(int znak = -1; znak <= 1; znak++) {
+                for(PunktSzczepien punkt : punktySzczepien[adresPacjentaWWojewodztwie + znak * odleglosc]) {
+                    if(punkt.poprawnaSzczepionka(pacjent)) {
+                        if(punkt.getNajblizszyWolnyTermin() < najblizszyTermin) {
+                            najblizszyTermin = punkt.getNajblizszyWolnyTermin();
+                            punktZTerminem = punkt;
+                        }
+                    }
+                }
+            }
+        }
+        return punktZTerminem;
+    }
+}
+
+public class BiuroSzczepien {
+    private Wojewodztwo[] wojewodztwa;
+
+    public BiuroSzczepien(Wojewodztwo[] wojewodztwa) {
+        this.wojewodztwa = wojewodztwa;
+    }
+
+    public PunktSzczepien wskazPunkt(Pacjent pacjent) {
+        return wojewodztwa[pacjent.getWojewodztwo()].wskazPunkt(pacjent);
+    }
+}

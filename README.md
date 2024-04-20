@@ -6,12 +6,13 @@ Stwórz folder (jeśli nie istnieje) z nazwą roku z którego jest kolokwium, na
 
 Jeśli ktoś ma jakiś feedback dotyczący rozwiązania zadania, to zachęcam do zkomentowania poniżej.
 
-Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzenia swojej
+Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzenia swojej.
 
 # Rozwiązania
 
 - Kolokwium 2021 Szczepienia
   - [rozwiązanie Marcin Sz.](/2021/ms/)
+  - [rozwiązanie Jakub Cz.](/2021/jc/rozwiazanie.txt) (napisane na kartce w 1,5h i przepisane, nie sprawdzone)
 - Kolokwium 2020 Mutujący wirus i szczepionka
   - [rozwiązanie Marcin Sz.](/2020/ms/)
 - Kolokwium 2019 Gra błyskawica
