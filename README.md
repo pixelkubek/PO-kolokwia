@@ -9,12 +9,13 @@ Jeśli ktoś ma jakiś feedback dotyczący rozwiązania zadania, to zachęcam do
 Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzenia swojej
 
 # Rozwiązania
+
 - Kolokwium 2021 Szczepienia
   - [rozwiązanie Marcin Sz.](/2021/ms/)
 - Kolokwium 2020 Mutujący wirus i szczepionka
   - [rozwiązanie Marcin Sz.](/2020/ms/)
 - Kolokwium 2019 Gra błyskawica
-  - [placeholder](/LICENSE)
+  - [rozwiązanie Marcin Sz.](/2019/ms/)
 - Kolokwium 2018 Metryki odległości funkcji
   - [placeholder](/LICENSE)
 - Kolokwium 2012 (przedmiot PO i C++ prowadzony przez Jabłonowskiego)
