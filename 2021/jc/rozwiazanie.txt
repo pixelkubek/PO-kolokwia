@@ -109,11 +109,13 @@ public class Wojewodztwo {
 
         for(int odleglosc = 0; odleglosc <= pacjent.getOdleglosc(); odleglosc++) {
             for(int znak = -1; znak <= 1; znak++) {
-                for(PunktSzczepien punkt : punktySzczepien[adresPacjentaWWojewodztwie + znak * odleglosc]) {
-                    if(punkt.poprawnaSzczepionka(pacjent)) {
-                        if(punkt.getNajblizszyWolnyTermin() < najblizszyTermin) {
-                            najblizszyTermin = punkt.getNajblizszyWolnyTermin();
-                            punktZTerminem = punkt;
+                if(adresPacjentaWWojewodztwie + znak * odleglosc >= 0 && adresPacjentaWWojewodztwie + znak * odleglosc < 10000) {
+                    for(PunktSzczepien punkt : punktySzczepien[adresPacjentaWWojewodztwie + znak * odleglosc]) {
+                        if(punkt.poprawnaSzczepionka(pacjent)) {
+                            if(punkt.getNajblizszyWolnyTermin() < najblizszyTermin) {
+                                najblizszyTermin = punkt.getNajblizszyWolnyTermin();
+                                punktZTerminem = punkt;
+                            }
                         }
                     }
                 }
