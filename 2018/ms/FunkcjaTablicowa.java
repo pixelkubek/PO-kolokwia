@@ -23,6 +23,19 @@ public class FunkcjaTablicowa extends Funkcja {
         _poprzedniIndexWywolania =BRAK_POPRZEDNICH_WYWOLAN;
     }
 
+    public FunkcjaTablicowa(int[] dziedzina, FunkcjaTablicowa funkcjaWlozona){
+        if(dziedzina.length == 0)
+            throw new IllegalArgumentException("Dziedzina nie może być pusta.");
+
+        _dziedzina = new int[dziedzina.length];
+        kopiujISprawdzCzyNaturalne(dziedzina,_dziedzina);
+        _przeciwdziedzina = new int[funkcjaWlozona._przeciwdziedzina.length];
+        for(int i = 0; i<_dziedzina.length; i++){
+            _przeciwdziedzina[i] = funkcjaWlozona.aplikuj(_dziedzina[i]);
+        }
+        _poprzedniIndexWywolania =BRAK_POPRZEDNICH_WYWOLAN;
+    }
+
     // Zakładamy, że rozmiar tablic jest taki sam
     private static void kopiujISprawdzCzyNaturalne(int[] zrodlo, int [] cel){
         for(int i = 0; i<cel.length; i++){
