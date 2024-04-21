@@ -19,6 +19,7 @@ Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzen
   - [rozwiązanie Jakub Cz.](/2020/jc/)
 - Kolokwium 2019 Gra błyskawica
   - [rozwiązanie Marcin Sz.](/2019/ms/)
+  - [rozwiazanie Jakub Cz.](/2019/jc/)
 - Kolokwium 2018 Metryki odległości funkcji
   - [rozwiązanie Marcin Sz.](/2018/ms/)
 - Kolokwium 2012 (przedmiot PO i C++ prowadzony przez Jabłonowskiego)
