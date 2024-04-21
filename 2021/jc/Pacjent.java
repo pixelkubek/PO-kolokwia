@@ -3,12 +3,14 @@ public class Pacjent {
     private int maksymalnaOdleglosc;
     private Szczepionka potrzebnaSzczepionka;
     private boolean zaszczepiony;
+    private String pesel;
 
-    public Pacjent(KodPocztowy kodPocztowy, int maksymalnaOdleglosc, Szczepionka potrzebnaSzczepionka) {
+    public Pacjent(KodPocztowy kodPocztowy, int maksymalnaOdleglosc, Szczepionka potrzebnaSzczepionka, String pesel) {
         this.kodPocztowy = kodPocztowy;
         this.maksymalnaOdleglosc = maksymalnaOdleglosc;
         this.potrzebnaSzczepionka = potrzebnaSzczepionka;
         this.zaszczepiony = false;
+        this.pesel = pesel;
     }
 
     public Szczepionka getSzczepionka() {return potrzebnaSzczepionka;}
@@ -18,5 +20,13 @@ public class Pacjent {
 
     public void zaszczep() {
         zaszczepiony = true;
+    }
+
+    public int najmniejszyAdres() {
+        return kodPocztowy.minimalnyAdres(maksymalnaOdleglosc);
+    }
+
+    public int najwiekszyAdres() {
+        return kodPocztowy.maksymalnyAdres(maksymalnaOdleglosc);
     }
 }

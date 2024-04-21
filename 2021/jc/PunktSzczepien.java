@@ -3,15 +3,21 @@ import java.util.ArrayList;
 public class PunktSzczepien {
     private Szczepionka podawanaSzczepionka;
     private int pacjenciDziennie, najblizszyWolnyTermin;
-    // pacjenciWTymTerminie < pacjenciDziennie
+    private KodPocztowy kodPunktu;
 
     private ArrayList<ArrayList<Pacjent>> pacjenciWDniu;
 
-    public PunktSzczepien(Szczepionka szczepionka, int ilePacjentowDziennie) {
+    public PunktSzczepien(Szczepionka szczepionka, int ilePacjentowDziennie, KodPocztowy kodPunktu) {
         pacjenciDziennie = ilePacjentowDziennie;
-        pacjenciWDniu = new ArrayList<>(365);
+        pacjenciWDniu = new ArrayList<ArrayList<Pacjent>>();
+
+        for(int i = 0; i < 365; i++)
+            pacjenciWDniu.add(new ArrayList<Pacjent>());
+
         podawanaSzczepionka = szczepionka;
         najblizszyWolnyTermin = 0;
+
+        this.kodPunktu = kodPunktu;
     }
 
     public Szczepionka getSzczepionka() {return podawanaSzczepionka;}
@@ -36,6 +42,22 @@ public class PunktSzczepien {
     public void realizujSzczepieniaWDniu(int dzien) {
         for(Pacjent pacjent : pacjenciWDniu.get(dzien)) {
             pacjent.zaszczep();
+        }
+
+        najblizszyWolnyTermin = dzien + 1;
+    }
+
+    public boolean lepszyNiz(PunktSzczepien innyPunkt, Pacjent pacjent) {
+        KodPocztowy kodPacjenta = pacjent.getKodPocztowy();
+        if(this.najblizszyWolnyTermin < innyPunkt.najblizszyWolnyTermin) {
+            return true;
+        } else if(this.najblizszyWolnyTermin == innyPunkt.najblizszyWolnyTermin){
+            if(kodPacjenta.odleglosc(this.kodPunktu) < kodPacjenta.odleglosc(innyPunkt.kodPunktu))
+                return true;
+            else 
+                return false;
+        } else {
+            return false;
         }
     }
 }

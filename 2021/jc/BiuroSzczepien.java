@@ -6,6 +6,6 @@ public class BiuroSzczepien {
     }
 
     public PunktSzczepien wskazPunkt(Pacjent pacjent) {
-        return wojewodztwa[pacjent.getWojewodztwo()].wskazPunkt(pacjent);
+        return wojewodztwa[pacjent.getKodPocztowy().getWojewodztwo()].wskazPunkt(pacjent);
     }
 }

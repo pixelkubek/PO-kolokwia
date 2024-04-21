@@ -8,25 +8,15 @@ public class Wojewodztwo {
     }
 
     public PunktSzczepien wskazPunkt(Pacjent pacjent) {
-        int najblizszyTermin = 366;
-        PunktSzczepien punktZTerminem = null;
-
-        int adresPacjentaWWojewodztwie = pacjent.getKodPocztowy().getKod();
-
-        for(int odleglosc = 0; odleglosc <= pacjent.getOdleglosc(); odleglosc++) {
-            for(int znak = -1; znak <= 1; znak++) {
-                if(adresPacjentaWWojewodztwie + znak * odleglosc >= 0 && adresPacjentaWWojewodztwie + znak * odleglosc < 10000) {
-                    for(PunktSzczepien punkt : punktySzczepien[adresPacjentaWWojewodztwie + znak * odleglosc]) {
-                        if(punkt.poprawnaSzczepionka(pacjent)) {
-                            if(punkt.getNajblizszyWolnyTermin() < najblizszyTermin) {
-                                najblizszyTermin = punkt.getNajblizszyWolnyTermin();
-                                punktZTerminem = punkt;
-                            }
-                        }
-                    }
+        PunktSzczepien najlepszyPunkt = null;
+        for(int adres = pacjent.najmniejszyAdres(); adres < pacjent.najwiekszyAdres(); adres++) {
+            for(PunktSzczepien punkt : punktySzczepien[adres]) {
+                if(punkt.poprawnaSzczepionka(pacjent) && (najlepszyPunkt == null || punkt.lepszyNiz(najlepszyPunkt, pacjent))) {
+                    najlepszyPunkt = punkt;
                 }
             }
         }
-        return punktZTerminem;
+
+        return najlepszyPunkt;
     }
 }
