@@ -16,6 +16,7 @@ Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzen
   - [rozwiązanie Michał B.](/2021/mb/)
 - Kolokwium 2020 Mutujący wirus i szczepionka
   - [rozwiązanie Marcin Sz.](/2020/ms/)
+  - [rozwiązanie Jakub Cz.](/2020/jc/)
 - Kolokwium 2019 Gra błyskawica
   - [rozwiązanie Marcin Sz.](/2019/ms/)
 - Kolokwium 2018 Metryki odległości funkcji

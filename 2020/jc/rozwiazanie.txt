@@ -1,0 +1,155 @@
+public class Nukleotyd {
+    private String typ;
+
+    public Nukleotyd(String typ) {
+        this.typ =typ;
+    }
+
+    public String getTyp() {return typ;}
+
+    public boolean rowny(Nukleotyd inny) {
+        return this.typ == inny.typ;
+    }
+}
+
+public class KwasNukleinowy {
+    private Nukleotyd[] kod;
+    private String typ;
+
+    public KwasNukleinowy(Nukleotyd[] kod, String typ) {
+        this.kod = kod;
+        this.typ = typ;
+    }
+
+    public Nukleotyd[] getKod() {return kod;}
+    public String getTyp() {return typ;}
+
+    public boolean zawieraCiag(Nukleotyd[] ciag) {
+        for (int i = 0; i < kod.length - ciag.length + 1; i++) {
+            boolean rowne = true;
+            for(int j = 0; j < ciag.length; j++) {
+                if(!kod[i + j].rowny(ciag[j])) {
+                    rowne = false;
+                }
+            }
+
+            if(rowne) return true;
+        }
+
+        return false;
+    }
+}
+
+public abstract class Wirus {
+    protected KwasNukleinowy kwasWirusa;
+    protected int liczbaMutacjiMieisac;
+
+    public KwasNukleinowy getKwas() {return kwasWirusa;}
+    public int getLiczbaMutacji() {return liczbaMutacjiMieisac;}
+
+    public abstract void mutuj();
+}
+
+import java.util.Random;
+
+public class WirusDziwny extends Wirus {
+    public WirusDziwny(KwasNukleinowy kwas, int liczbaMutacji) {
+        this.kwasWirusa = kwas;
+        this.liczbaMutacjiMieisac = liczbaMutacji;
+    }
+
+    @Override
+    public void mutuj() {
+        Random r = new Random();
+        int i1 = r.nextInt(kwasWirusa.getKod().length - 1);
+        int i2 = r.nextInt(kwasWirusa.getKod().length - i1 - 1) + i1 + 1;
+
+        Nukleotyd temp = kwasWirusa.getKod()[i1];
+        kwasWirusa.getKod()[i1] = kwasWirusa.getKod()[i2];
+        kwasWirusa.getKod()[i2] = temp;
+    }
+}
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class WirusSpecyficzny extends Wirus {
+    private int[] mutujacePozycje;
+    private Nukleotyd[] dopuszczoneNukleotydy;
+
+    public WirusSpecyficzny(KwasNukleinowy kwas, int liczbaMutacji, int[] mutujacePozycje, Nukleotyd[] dopuszczoneNukleotydy) {
+        this.kwasWirusa = kwas;
+        this.liczbaMutacjiMieisac = liczbaMutacji;
+        this.mutujacePozycje = mutujacePozycje;
+        this.dopuszczoneNukleotydy = dopuszczoneNukleotydy;
+    }
+
+    @Override
+    public void mutuj() {
+        Random r = new Random();
+        int n = r.nextInt(mutujacePozycje.length);
+        int mutowanaPozycja = mutujacePozycje[n];
+
+        ArrayList<Nukleotyd> mozliweNukleotydy = new ArrayList<Nukleotyd>();
+
+        for(Nukleotyd s : dopuszczoneNukleotydy) {
+            if(!s.rowny(kwasWirusa.getKod()[mutowanaPozycja])) {
+                mozliweNukleotydy.add(s);
+            }
+        }
+
+        int idxNowego = r.nextInt(mozliweNukleotydy.size());
+        kwasWirusa.getKod()[mutowanaPozycja] = mozliweNukleotydy.get(idxNowego);
+    }
+}
+
+public class Przeciwcialo {
+    private Nukleotyd[] eliminowanyCiag;
+
+    public Przeciwcialo(Nukleotyd[] ciag) {
+        eliminowanyCiag = ciag;
+    }
+
+    public Nukleotyd[] getEliminowanyCiag() {return eliminowanyCiag;}
+
+    public boolean eliminujeWirusa(Wirus wirus) {
+        return wirus.getKwas().zawieraCiag(eliminowanyCiag);
+    }
+}
+
+public class Szczepionka {
+    private Nukleotyd[] eliminowanyCiag;
+
+    public Szczepionka(Nukleotyd[] eliminowanyCiag) {
+        this.eliminowanyCiag = eliminowanyCiag;
+    }
+
+    public Przeciwcialo tworzonePrzeciwcialo() {
+        return new Przeciwcialo(eliminowanyCiag);
+    }
+}
+
+public class SymulacjaSystemuOdpornosciowego {
+    private Przeciwcialo przeciwcialo;
+    private Wirus wirus;
+
+    public SymulacjaSystemuOdpornosciowego(Szczepionka szczepionka, Wirus wirus) {
+        przeciwcialo = szczepionka.tworzonePrzeciwcialo();
+        this.wirus = wirus;
+    }
+
+    private void symulujMiesiac() {
+        for(int i = 0; i < wirus.getLiczbaMutacji(); i++)
+            wirus.mutuj();
+    }
+
+    private void symulujMiesiace(int liczbaMiesiecy) {
+        for(int i = 0; i < liczbaMiesiecy; i++)
+            this.symulujMiesiac();
+    }
+
+    public boolean ochroniPoSymulacji(int liczbaMiesiecy) {
+        symulujMiesiace(liczbaMiesiecy);
+        return przeciwcialo.eliminujeWirusa(wirus);
+    }
+}
