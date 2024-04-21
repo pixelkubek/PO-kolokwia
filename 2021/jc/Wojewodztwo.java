@@ -11,7 +11,7 @@ public class Wojewodztwo {
         int najblizszyTermin = 366;
         PunktSzczepien punktZTerminem = null;
 
-        int adresPacjentaWWojewodztwie = pacjent.getKodPocztowy() - pacjent.getWojewodztwo() * 10000;
+        int adresPacjentaWWojewodztwie = pacjent.getKodPocztowy().getKod();
 
         for(int odleglosc = 0; odleglosc <= pacjent.getOdleglosc(); odleglosc++) {
             for(int znak = -1; znak <= 1; znak++) {

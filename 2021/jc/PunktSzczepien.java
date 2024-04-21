@@ -5,23 +5,22 @@ public class PunktSzczepien {
     private int pacjenciDziennie, najblizszyWolnyTermin;
     // pacjenciWTymTerminie < pacjenciDziennie
 
-    private ArrayList<Pacjent>[] pacjenciWDniu;
+    private ArrayList<ArrayList<Pacjent>> pacjenciWDniu;
 
     public PunktSzczepien(Szczepionka szczepionka, int ilePacjentowDziennie) {
         pacjenciDziennie = ilePacjentowDziennie;
-        pacjenciWDniu = new ArrayList<Pacjent>[365];
+        pacjenciWDniu = new ArrayList<>(365);
         podawanaSzczepionka = szczepionka;
         najblizszyWolnyTermin = 0;
-        pacjenciWTymTerminie = 0;
     }
 
     public Szczepionka getSzczepionka() {return podawanaSzczepionka;}
     public int getNajblizszyWolnyTermin() {return najblizszyWolnyTermin;}
 
     public void umow(Pacjent pacjent) {
-        pacjenciWDniu[najblizszyWolnyTermin].add(pacjent);
+        pacjenciWDniu.get(najblizszyWolnyTermin).add(pacjent);
 
-        if(pacjenciWDniu[najblizszyWolnyTermin].size() >= pacjenciDziennie) {
+        if(pacjenciWDniu.get(najblizszyWolnyTermin).size() >= pacjenciDziennie) {
             najblizszyWolnyTermin++;
         }
     }
@@ -31,11 +30,11 @@ public class PunktSzczepien {
     }
 
     public ArrayList<Pacjent> raportujPacjentowZDnia(int dzien) {
-        return pacjenciWDniu[dzien];
+        return pacjenciWDniu.get(dzien);
     }
 
     public void realizujSzczepieniaWDniu(int dzien) {
-        for(Pacjent pacjent : pacjenciWDniu[dzien]) {
+        for(Pacjent pacjent : pacjenciWDniu.get(dzien)) {
             pacjent.zaszczep();
         }
     }
