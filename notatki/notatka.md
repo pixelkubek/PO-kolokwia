@@ -64,7 +64,29 @@ public class Main {
 ```java
 list.stream().toArray(typ::new);
 ```
+## [`String`](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
+String jest immutable
 
+Metody (nie wszytkie):
+- `public char charAt(int index)`
+Returns the char value at the specified index. An index ranges from 0 to length() - 1. The first char value of the sequence is at index 0, the next at index 1, and so on, as for array indexing.
+If the char value specified by the index is a surrogate, the surrogate value is returned.
+- `public int compareTo(String anotherString)`
+Compares two strings lexicographically. Returns:
+the value 0 if the argument string is equal to this string; a value less than 0 if this string is lexicographically less than the string argument; and a value greater than 0 if this string is lexicographically greater than the string argument.
+- `public boolean contains(CharSequence s)`
+Returns true if and only if this string contains the specified sequence of char values.
+- `public String concat(String str)`
+Concatenates the specified string to the end of this string.
+If the length of the argument string is 0, then this String object is returned. Otherwise, a String object is returned that represents a character sequence that is the concatenation of the character sequence represented by this String object and the character sequence represented by the argument string.
+- `public int indexOf(String str)`
+Returns the index within this string of the first occurrence of the specified substring.
+- `public int indexOf(String str, int fromIndex)`
+Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.
+- `public int length()`
+Returns the length of this string. The length is equal to the number of Unicode code units in the string.
+- `public String substring(int beginIndex, int endIndex)`
+Returns a string that is a substring of this string. The substring begins at the specified beginIndex and extends to the character at index endIndex - 1. Thus the length of the substring is endIndex-beginIndex.
 # Potencjalne błędy
 ## [Wołanie konstruktora z drugiego konstruktora](https://stackoverflow.com/questions/285177/how-do-i-call-one-constructor-from-another-in-java)
 
