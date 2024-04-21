@@ -23,3 +23,7 @@ Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzen
   - [rozwiązanie Marcin Sz.](/2018/ms/)
 - Kolokwium 2012 (przedmiot PO i C++ prowadzony przez Jabłonowskiego)
   - [rowiązanie Jakub Cz.](/2012/jc/)
+
+# Notatka
+Notatkę można skompilować do wydruku za pomocą
+`make notatka.pdf`. Wymagane jest zainstalowanie pandoc i texlive-full
