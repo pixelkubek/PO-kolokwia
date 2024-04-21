@@ -1,3 +1,7 @@
+/*
+ * to rozwiązanie było napisane na kartce i przepisane i zawiera błędy
+ */
+
 public class Szczepionka {
     private String nazwa, producent;
     private int wielkoscMl;

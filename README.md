@@ -12,7 +12,7 @@ Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzen
 
 - Kolokwium 2021 Szczepienia
   - [rozwiązanie Marcin Sz.](/2021/ms/)
-  - [rozwiązanie Jakub Cz.](/2021/jc/rozwiazanie.txt) (napisane na kartce w 1,5h i przepisane, nie sprawdzone)
+  - [rozwiązanie Jakub Cz.](/2021/jc/)
   - [rozwiązanie Michał B.](/2021/mb/)
 - Kolokwium 2020 Mutujący wirus i szczepionka
   - [rozwiązanie Marcin Sz.](/2020/ms/)

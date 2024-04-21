@@ -9,7 +9,7 @@ public class Wojewodztwo {
 
     public PunktSzczepien wskazPunkt(Pacjent pacjent) {
         PunktSzczepien najlepszyPunkt = null;
-        for(int adres = pacjent.najmniejszyAdres(); adres < pacjent.najwiekszyAdres(); adres++) {
+        for(int adres = pacjent.najmniejszyAdres(); adres <= pacjent.najwiekszyAdres(); adres++) {
             for(PunktSzczepien punkt : punktySzczepien[adres]) {
                 if(punkt.poprawnaSzczepionka(pacjent) && (najlepszyPunkt == null || punkt.lepszyNiz(najlepszyPunkt, pacjent))) {
                     najlepszyPunkt = punkt;
