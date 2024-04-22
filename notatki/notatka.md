@@ -59,16 +59,6 @@ public class Main {
 }
 ```
 
-## Zamiana listy na tablice
-
-```java
-list.stream().toArray(typ::new);
-```
-## Kopiowanie tablic
-```java
-System.arraycopy(z, indeksStartZ, do, indeksStartDo,ileElementow);
-```
-
 ## [`String`](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
 String jest immutable
 
@@ -92,27 +82,17 @@ Returns the index within this string of the first occurrence of the specified su
 Returns the length of this string. The length is equal to the number of Unicode code units in the string.
 - `public String substring(int beginIndex, int endIndex)`
 Returns a string that is a substring of this string. The substring begins at the specified beginIndex and extends to the character at index endIndex - 1. Thus the length of the substring is endIndex-beginIndex.
-# Potencjalne błędy
-## [Wołanie konstruktora z drugiego konstruktora](https://stackoverflow.com/questions/285177/how-do-i-call-one-constructor-from-another-in-java)
+
+# Przydatne info
+
+## Zamiana listy na tablice
 
 ```java
-public class Foo {
-    private int a, b;
-
-    public Foo(int a, int b) {
-        this.a = a;
-        this.b = b;
-    }
-
-    // chcę, aby wywołanie Foo(a) stworzyło obiekt z parametrami (a, 0)
-    public Foo(int a) {
-        Foo(a, 0); //!!! nie działa
-    }
-
-    public Foo(int a) {
-        this(a, 0); // działa
-    }
-}
+list.stream().toArray(typ::new);
+```
+## Kopiowanie tablic
+```java
+System.arraycopy(z, indeksStartZ, do, indeksStartDo,ileElementow);
 ```
 
 ## Modyfikatory dostępu (metody, klasy, atrybuty...)
@@ -137,3 +117,27 @@ public class Foo {
 - nazwaZmiennej (*camelCase*)
 - TO_JEST_STALA
 
+
+
+# Potencjalne błędy
+## [Wołanie konstruktora z drugiego konstruktora](https://stackoverflow.com/questions/285177/how-do-i-call-one-constructor-from-another-in-java)
+
+```java
+public class Foo {
+    private int a, b;
+
+    public Foo(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    // chcę, aby wywołanie Foo(a) stworzyło obiekt z parametrami (a, 0)
+    public Foo(int a) {
+        Foo(a, 0); //!!! nie działa
+    }
+
+    public Foo(int a) {
+        this(a, 0); // działa
+    }
+}
+```
