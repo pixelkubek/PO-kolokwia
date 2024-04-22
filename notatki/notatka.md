@@ -64,6 +64,11 @@ public class Main {
 ```java
 list.stream().toArray(typ::new);
 ```
+## Kopiowanie tablic
+```java
+System.arraycopy(z, indeksStartZ, do, indeksStartDo,ileElementow);
+```
+
 ## [`String`](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
 String jest immutable
 
@@ -109,3 +114,26 @@ public class Foo {
     }
 }
 ```
+
+## Modyfikatory dostępu (metody, klasy, atrybuty...)
+- domyślny - dostępny w całej paczce,
+- public - dostępny dla wszystkich,
+- private - dostępny tylko w tej klasie (**i nie w klasie pochodnych!!!**),
+- protected - dostępny w całej paczce i klasach pochodnych.
+### inne ważne słowa kluczowe
+- abstract - klasa / metoda abstrakcyjna, to znaczy jej implementacja musi być przysłonięta
+- final - to jest finalna wartość / implementacja, nie można jej później zmienić (uwaga, przy lokalnych atrybutach w klasie oznacza, że można je ustawić tylko w konstruktorze)
+- super - odwołanie do nadklasy (lub jednej z nich, najbliższej z daną implementacją, czarna skrzynka trochę)
+- this - odwołanie do tego obiektu, w którym jesteśmy
+- extends - klasa dziedzidzy po innej klasie (```Chomik extends Ssak```)
+- impements - klasa implementuje interfejs (```Samochod implements Pojazd```)
+
+## Konwencje
+- pakiet
+  - com.sun.eng
+- ToJestKlasa (*PascalCase*)
+- ToZaśJestInterfejs (*PascalCase*)
+- aToMetoda() (*camelCase*)
+- nazwaZmiennej (*camelCase*)
+- TO_JEST_STALA
+
