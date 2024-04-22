@@ -9,7 +9,8 @@ Jeśli ktoś ma jakiś feedback dotyczący rozwiązania zadania, to zachęcam do
 Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzenia swojej.
 
 # Rozwiązania
-
+- Kolokwium 2023 Kuratorium
+  - [rozwiązanie Marcin Sz.](/2023/ms/)
 - Kolokwium 2021 Szczepienia
   - [rozwiązanie Marcin Sz.](/2021/ms/)
   - [rozwiązanie Jakub Cz.](/2021/jc/)
