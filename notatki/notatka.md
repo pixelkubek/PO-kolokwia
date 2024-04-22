@@ -107,7 +107,7 @@ System.arraycopy(z, indeksStartZ, do, indeksStartDo,ileElementow);
 - `this` - odwołanie do tego obiektu, w którym jesteśmy
 - `extends` - klasa dziedzidzy po innej klasie (```Chomik extends Ssak```)
 - `impements` - klasa implementuje interfejs (```Samochod implements Pojazd```)
-
+- `@Override` - używamy przed funkcją informując, że poniższy kod to przysłonięcie poprzedniej(o ile istniała) implementacji funkcji
 ## Konwencje
 - pakiet
   - com.sun.eng
