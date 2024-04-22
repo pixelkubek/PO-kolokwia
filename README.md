@@ -17,6 +17,7 @@ Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzen
 - Kolokwium 2020 Mutujący wirus i szczepionka
   - [rozwiązanie Marcin Sz.](/2020/ms/)
   - [rozwiązanie Jakub Cz.](/2020/jc/)
+  - [rozwiązanie Michał B.](/2020/mb/)
 - Kolokwium 2019 Gra błyskawica
   - [rozwiązanie Marcin Sz.](/2019/ms/)
   - [rozwiazanie Jakub Cz.](/2019/jc/)
