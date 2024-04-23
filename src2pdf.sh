@@ -3,6 +3,7 @@
 # https://superuser.com/questions/601198/how-can-i-automatically-convert-all-source-code-files-in-a-folder-recursively
 
 tex_file=$(mktemp) ## Random temp file name
+baseFolders="2023 2021 2020 2019 2018 2012"
 
 cat<<EOF >$tex_file   ## Print the tex file header
 \documentclass{article}
@@ -11,6 +12,10 @@ cat<<EOF >$tex_file   ## Print the tex file header
 \usepackage[utf8]{inputenc}
 \usepackage[a4paper, margin=1.5cm]{geometry}
 \usepackage{multicol}
+
+\usepackage{sectsty}
+\sectionfont{\fontsize{12}{15}\selectfont}
+\subsectionfont{\fontsize{8}{10}\selectfont}
 
 \usepackage{listings}
 % Polish Char Fix
@@ -46,7 +51,7 @@ cat<<EOF >$tex_file   ## Print the tex file header
 
 EOF
 
-for baseFolder in $(find . -type d -regex '^./[0-9]*'); do
+for baseFolder in $baseFolders; do
     for codeFolder in $baseFolder/*; do
         echo "\section{$codeFolder}" >> $tex_file
         echo "\begin{multicols}{2}" >> $tex_file
@@ -54,9 +59,10 @@ for baseFolder in $(find . -type d -regex '^./[0-9]*'); do
         find $codeFolder -type f -name "*.java" | 
         sed 's/^\..//' |                 ## Change ./foo/bar.src to foo/bar.src
 
-        while read  i; do                ## Loop through each file
-            name=${i//_/\\_}             ## escape underscores
-            echo "\lstinputlisting[style=customasm]{\detokenize{$i}}" >>$tex_file
+        while read i; do                ## Loop through each file
+            file_name=$(basename ${i})
+            echo "\subsection{$file_name}" >> $tex_file
+            echo "\lstinputlisting[style=customasm]{\detokenize{$i}}" >> $tex_file
         done &&
         echo "\end{multicols}" >> $tex_file
 
@@ -64,5 +70,5 @@ for baseFolder in $(find . -type d -regex '^./[0-9]*'); do
 done
 
 echo "\end{document}" >> $tex_file &&
-pdflatex -jobname=kod -output-directory . $tex_file && 
-pdflatex -jobname=kod -output-directory . $tex_file
+pdflatex -jobname=kod -output-directory . -interaction=batchmode $tex_file && 
+pdflatex -jobname=kod -output-directory . -interaction=batchmode $tex_file
