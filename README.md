@@ -31,3 +31,7 @@ Dodatkowo zachęcam do dodawania do [notatki](/notatki/notatka.md), lub utworzen
 # Notatka
 Notatkę można skompilować do wydruku za pomocą
 `make notatka.pdf`. Wymagane jest zainstalowanie pandoc i texlive-full
+
+# Pdf z rozwiązaniami
+Pdf z rozwiązaniami można skompilować do wydruku za pomocą
+`make kod.pdf`. Wymagane jest zainstalowanie pandoc i texlive-full

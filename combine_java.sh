@@ -6,7 +6,6 @@ fileName="$DIR/notatki/kod.md"
 echo "# Rozwiązania PO" > $fileName || exit 1
 
 tasks="2023 2021 2020 2019 2018"
-echo $tasks
 
 echo "Scanning directories"
 for task in $tasks
@@ -15,7 +14,6 @@ do
     taskName=$(basename $task)
     echo "## Zadanie: $taskName" >> $fileName || exit 1
     solutions=$(find $taskDir -type d)
-    echo $solutions
     for solutionDir in $solutions
     do
         if [[ $solutionDir == $taskDir ]]; then
@@ -34,6 +32,3 @@ do
         echo "\`\`\`" >> "$fileName" || exit 1
     done
 done
-
-echo "Running make..."
-make kod.pdf
