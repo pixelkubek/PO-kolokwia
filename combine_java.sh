@@ -1,13 +1,11 @@
 #!/bin/bash
 
 DIR="$PWD"
-echo $DIR
 fileName="$DIR/notatki/kod.md"
 echo "# Rozwiązania PO" > $fileName || exit 1
 
 tasks="2023 2021 2020 2019 2018"
 
-echo "Scanning directories"
 for task in $tasks
 do
     taskDir="$DIR/$task"
