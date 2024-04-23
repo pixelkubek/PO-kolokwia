@@ -95,6 +95,77 @@ list.stream().toArray(typ::new);
 System.arraycopy(z, indeksStartZ, do, indeksStartDo,ileElementow);
 ```
 
+## Sortowanie
+- `public interface Comparable<T>` This interface imposes a total ordering on the objects of each class that implements it. This ordering is referred to as the class's natural ordering, and the class's compareTo method is referred to as its natural comparison method.
+Lists (and arrays) of objects that implement this interface can be sorted automatically by Collections.sort (and Arrays.sort). Objects that implement this interface can be used as keys in a sorted map or as elements in a sorted set, without the need to specify a comparator.
+- `public interface Comparator<T>` A comparison function, which imposes a total ordering on some collection of objects. Comparators can be passed to a sort method (such as Collections.sort or Arrays.sort) to allow precise control over the sort order.
+
+```java
+import java.util.Arrays;
+
+public class SortTest {
+    public static void main(String[] args) {
+        int[] arr = {4, 3, 2, 1};
+        Arrays.sort(arr);
+
+        System.out.println(Arrays.toString(arr)); // [1, 2, 3, 4]
+
+        Foo[] arr2 = {new Foo(4), new Foo(3), new Foo(2), new Foo(1)};
+
+        Arrays.sort(arr2);
+
+        System.out.println(Arrays.toString(arr2)); // [1, 2, 3, 4]
+
+        Bar[] arr3 = {new Bar(4), new Bar(3), new Bar(2), new Bar(1)};
+
+        Arrays.sort(arr3, new BarComparator());
+
+        System.out.println(Arrays.toString(arr3)); // [1, 2, 3, 4]
+    }
+}
+
+public class Foo implements Comparable<Foo> {
+    private int i;
+
+    public Foo(int num) {
+        i = num;
+    }
+
+    @Override
+    public int compareTo(Foo f) {
+        return this.i - f.i;
+    }
+
+    @Override
+    public String toString() {
+        return "" + i;
+    }
+}
+
+public class Bar {
+    private int i;
+
+    public Bar(int num) {
+        i = num;
+    }
+
+    @Override
+    public String toString() {
+        return "" + i;
+    }
+
+    public int getI() {return i;}
+}
+
+import java.util.Comparator;
+
+public class BarComparator implements Comparator<Bar> {
+    public int compare(Bar b, Bar c) {
+        return b.getI() - c.getI();
+    }
+}
+```
+
 ## Modyfikatory dostępu (metody, klasy, atrybuty...)
 - *domyślny* - dostępny w całej paczce,
 - `public` - dostępny dla wszystkich,
